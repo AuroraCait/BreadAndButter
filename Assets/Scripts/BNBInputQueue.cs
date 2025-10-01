@@ -6,55 +6,9 @@ using System;
 using System.Linq;
 using System.Xml.Schema;
 using Unity.VisualScripting;
+using static BNBInput;
 
-// Enumeration of all possible inputs we can read from the queue
-public enum BNBInputType
-{
-    Up,
-    UpBack,
-    UpForward,
-    Forward,
-    Back,
-    Down,
-    DownBack,
-    DownForward,
-    Grab,
-    Light,
-    Medium,
-    Heavy,
-    Special
-}
-
-public struct BNBInput
-{
-    private float v;
-
-    public BNBInput(BNBInputType inputType, float timestamp) : this()
-    {
-        InputType = inputType;
-        Timestamp = timestamp;
-    }
-
-    public BNBInputType InputType { get; set; }
-    public float Timestamp { get; set; }
-}
-
-public struct BNBCombo
-{
-    public List<BNBInputType> Inputs { get; private set; }
-    public string Name { get; private set; }
-    public float TimingWindow { get; private set; } // ms
-
-    public BNBCombo(List<BNBInputType> _inputs, string _name, float timingWindow) : this()
-    {
-        Inputs = _inputs; Inputs.Reverse(); // inputs are reversed relative to declaration order to make searching the queue easier
-        Name = _name;
-        TimingWindow = timingWindow;
-    }
-
-    public int length() { return Inputs.Count; }
-}
-
+[System.Serializable]
 public class BNBInputQueue : MonoBehaviour
 {
     public BNBInputQueue() : base() { InputQueue = new LinkedList<BNBInput>(); LastDPadState = (false, false, false, false); }
@@ -152,11 +106,11 @@ public class BNBInputQueue : MonoBehaviour
         }
 
         // Then, process "buttons".
-        if (frameActions.FindAction("Light").WasPressedThisFrame())     { EnqueueInput(BNBInputType.Light);     inputMade = true; }
-        if (frameActions.FindAction("Medium").WasPressedThisFrame())    { EnqueueInput(BNBInputType.Medium);    inputMade = true; }
-        if (frameActions.FindAction("Heavy").WasPressedThisFrame())     { EnqueueInput(BNBInputType.Heavy);     inputMade = true; }
-        if (frameActions.FindAction("Grab").WasPressedThisFrame())      { EnqueueInput(BNBInputType.Grab);      inputMade = true; }
-        if (frameActions.FindAction("Special").WasPressedThisFrame())   { EnqueueInput(BNBInputType.Special);   inputMade = true; }
+        if (frameActions.FindAction("Light").WasPressedThisFrame()) { EnqueueInput(BNBInputType.Light); inputMade = true; }
+        if (frameActions.FindAction("Medium").WasPressedThisFrame()) { EnqueueInput(BNBInputType.Medium); inputMade = true; }
+        if (frameActions.FindAction("Heavy").WasPressedThisFrame()) { EnqueueInput(BNBInputType.Heavy); inputMade = true; }
+        if (frameActions.FindAction("Grab").WasPressedThisFrame()) { EnqueueInput(BNBInputType.Grab); inputMade = true; }
+        if (frameActions.FindAction("Special").WasPressedThisFrame()) { EnqueueInput(BNBInputType.Special); inputMade = true; }
 
         LastDPadState = DPadState;
 
@@ -167,24 +121,24 @@ public class BNBInputQueue : MonoBehaviour
     {
         foreach (var combo in Combos)
         {
-            var queueSlice = GetRange(InputQueue, 0, Math.Min(combo.Inputs.Count, InputQueue.Count)) ;
+            var queueSlice = GetRange(InputQueue, 0, Math.Min(combo.Inputs.Count, InputQueue.Count));
 
             // Debug.Log("Checking for combo " + combo.Name + "; input queue slice " + ListAsString(queueSlice) + ", combo inputs " + ListAsString(combo.Inputs));
 
             if ((from input in queueSlice select input.InputType).SequenceEqual(combo.Inputs))
             {
                 var timeDelta = Math.Abs(queueSlice.Last().Timestamp - queueSlice.First().Timestamp);
-                
+
                 // The inputs match, but are they within the timing window?
                 if (timeDelta <= combo.TimingWindow)
                 {
-                    Debug.Log("Combo Found - " + combo.Name);
+                    Debug.Log("Combo Found - " + combo.ComboName);
                     InputQueue.Clear();
                     break;
                 }
                 else
                 {
-                    Debug.Log("Combo found, but missed timing window - " + combo.Name + "; input time " + timeDelta + "ms, window " + combo.TimingWindow);
+                    Debug.Log("Combo found, but missed timing window - " + combo.ComboName + "; input time " + timeDelta + "ms, window " + combo.TimingWindow);
                 }
             }
         }
@@ -194,7 +148,7 @@ public class BNBInputQueue : MonoBehaviour
     {
         var timestamp = Time.time * 1000;
 
-        InputQueue.AddFirst(new BNBInput (
+        InputQueue.AddFirst(new BNBInput(
             inputType,
             timestamp
         ));
