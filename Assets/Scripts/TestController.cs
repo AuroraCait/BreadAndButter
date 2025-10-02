@@ -29,9 +29,4 @@ public class TestController : MonoBehaviour
             0f
         );
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger entered, but we're in the player controller");
-    }
 }

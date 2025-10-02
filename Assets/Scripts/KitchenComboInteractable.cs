@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class KitchenComboInteractable : MonoBehaviour
@@ -5,10 +6,7 @@ public class KitchenComboInteractable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // foreach (var r in GetComponentsInChildren<Renderer>())
-        // {
-        //     r.enabled = false;
-        // }
+        SetChildrenVisible(false);
     }
 
     // Update is called once per frame
@@ -17,29 +15,25 @@ public class KitchenComboInteractable : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider otherCollider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Trigger entered");
 
-        // if (collision.gameObject.CompareTag("Player"))
-        // {
-        //     foreach (var r in GetComponentsInChildren<Renderer>())
-        //     {
-        //         r.enabled = true;
-        //     }
-        // }
+        SetChildrenVisible(true);
     }
 
-    private void OnTriggerExit(Collider otherCollider)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log("Trigger exited");
-        
-        // if (collision.gameObject.CompareTag("Player"))
-        // {
-        //     foreach (var r in GetComponentsInChildren<Renderer>())
-        //     {
-        //         r.enabled = false;
-        //     }
-        // }
+
+        SetChildrenVisible(false);
+    }
+
+    private void SetChildrenVisible(bool visible)
+    {
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).gameObject.SetActive(visible);
+        }
     }
 }
