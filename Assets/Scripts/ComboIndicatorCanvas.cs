@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static BNBInput;
@@ -7,12 +8,13 @@ public class ComboIndicatorCanvas : MonoBehaviour
 {
     [SerializeField] public BNBCombo Combo;
     public GameObject InputIconPanel;
+    public TMPro.TMP_Text TMPText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Debug.Log("Creating ComboIndicatorCanvas with " + Combo.Length() + " inputs");
-        
+
         foreach (BNBInputType inputType in Combo.Inputs)
         {
             // WHY THE FUCK DOES THIS NOT WORK
@@ -22,6 +24,8 @@ public class ComboIndicatorCanvas : MonoBehaviour
             img.sprite = InputTypeToSprite(inputType);
             iconObj.SetActive(true);
         }
+
+        TMPText.text = Combo.ComboName;
     }
 
     private Sprite InputTypeToSprite(BNBInputType inputType) {
