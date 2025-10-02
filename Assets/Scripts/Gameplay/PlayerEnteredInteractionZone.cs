@@ -5,9 +5,9 @@ using Platformer.Model;
 namespace Platformer.Gameplay
 {
     /// <summary>
-    /// Fired when a player enters a trigger with a DeathZone component.
+    /// Fired when a player enters a trigger with a InteractionZone component.
     /// </summary>
-    /// <typeparam name="PlayerEnteredDeathZone"></typeparam>
+    /// <typeparam name="PlayerEnteredInteractionZone"></typeparam>
     public class PlayerEnteredInteractionZone : Simulation.Event<PlayerEnteredInteractionZone>
     {
         public InteractionZone interactionzone;
