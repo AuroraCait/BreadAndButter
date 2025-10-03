@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Background
-  - 
+  - SemiBackground
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 1703555571
+    locked: 0
+  - name: SemiBackground
+    uniqueID: 2977817763
     locked: 0
   - name: Default
     uniqueID: 0

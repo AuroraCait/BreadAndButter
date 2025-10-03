@@ -22,8 +22,8 @@ public class TestController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputAction upAction = m_PlayerInput.actions.FindAction("Up");
-        InputAction downAction = m_PlayerInput.actions.FindAction("Down");
+        // InputAction upAction = m_PlayerInput.actions.FindAction("Up");
+        // InputAction downAction = m_PlayerInput.actions.FindAction("Down");
         InputAction leftAction = m_PlayerInput.actions.FindAction("Left");
         InputAction rightAction = m_PlayerInput.actions.FindAction("Right");
 
@@ -31,8 +31,7 @@ public class TestController : MonoBehaviour
 
         gameObject.transform.position += new Vector3(
             -velo * (leftAction.IsPressed() ? 1 : 0) + velo * (rightAction.IsPressed() ? 1 : 0),
-            -velo * (downAction.IsPressed() ? 1 : 0) + velo * (upAction.IsPressed() ? 1 : 0),
-            0f
+            0f, 0f
         );
 
         m_Animator.SetBool("ForwardOrBack", leftAction.IsPressed() || rightAction.IsPressed());
@@ -43,7 +42,7 @@ public class TestController : MonoBehaviour
         InputAction specialAction = m_PlayerInput.actions.FindAction("Special");
 
         if (lightAction.IsPressed())
-        {
+        { 
             m_Animator.SetTrigger("LightPressed");
             m_Animator.SetBool("JabToggle", !m_Animator.GetBool("JabToggle"));
         }
