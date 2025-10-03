@@ -5,21 +5,27 @@ using UnityEngine.InputSystem;
 public class TestController : MonoBehaviour
 {
     public float Speed = 400f;
-    public PlayerInput InputModule;
+    private PlayerInput m_PlayerInput;
+
+    private Animator m_Animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        m_Animator = GetComponent<Animator>();
+        m_PlayerInput = GetComponent<PlayerInput>();
 
+        m_Animator.SetBool("ForwardOrBack", false);
+        m_Animator.SetBool("JabToggle", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-         InputAction upAction = InputModule.actions.FindAction("Up");
-        InputAction downAction = InputModule.actions.FindAction("Down");
-        InputAction leftAction = InputModule.actions.FindAction("Left");
-        InputAction rightAction = InputModule.actions.FindAction("Right");
+        InputAction upAction = m_PlayerInput.actions.FindAction("Up");
+        InputAction downAction = m_PlayerInput.actions.FindAction("Down");
+        InputAction leftAction = m_PlayerInput.actions.FindAction("Left");
+        InputAction rightAction = m_PlayerInput.actions.FindAction("Right");
 
         float velo = Speed * Time.deltaTime;
 
@@ -28,5 +34,7 @@ public class TestController : MonoBehaviour
             -velo * (downAction.IsPressed() ? 1 : 0) + velo * (upAction.IsPressed() ? 1 : 0),
             0f
         );
+
+        m_Animator.SetBool("ForwardOrBack", leftAction.IsPressed() || rightAction.IsPressed());
     }
 }
