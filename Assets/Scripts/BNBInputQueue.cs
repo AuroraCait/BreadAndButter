@@ -11,6 +11,11 @@ using static BNBInput;
 [System.Serializable]
 public class BNBInputQueue : MonoBehaviour
 {
+    // "Global" combos
+    [Tooltip("This is where all combo definitions should go; objects that need to reference a combo should get it from here.")]
+
+    [SerializeField] public List<BNBCombo> AllCombos;
+
     public BNBInputQueue() : base() { InputQueue = new LinkedList<BNBInput>(); LastDPadState = (false, false, false, false); }
 
     // I can't imagine we'll implement combos any longer than this.
@@ -183,6 +188,15 @@ public class BNBInputQueue : MonoBehaviour
         }
 
         return res;
+    }
+
+    public BNBCombo GetComboByName(string name)
+    {
+        return (
+            from combo in AllCombos
+            where combo.ComboName == name
+            select combo
+        ).FirstOrDefault();
     }
 
     public PlayerInput InputModule;

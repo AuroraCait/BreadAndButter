@@ -16,7 +16,7 @@ public class TestController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputAction upAction = InputModule.actions.FindAction("Up");
+         InputAction upAction = InputModule.actions.FindAction("Up");
         InputAction downAction = InputModule.actions.FindAction("Down");
         InputAction leftAction = InputModule.actions.FindAction("Left");
         InputAction rightAction = InputModule.actions.FindAction("Right");
