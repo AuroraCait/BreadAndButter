@@ -36,5 +36,28 @@ public class TestController : MonoBehaviour
         );
 
         m_Animator.SetBool("ForwardOrBack", leftAction.IsPressed() || rightAction.IsPressed());
+
+        InputAction lightAction = m_PlayerInput.actions.FindAction("Light");
+        InputAction mediumAction = m_PlayerInput.actions.FindAction("Medium");
+        InputAction heavyAction = m_PlayerInput.actions.FindAction("Heavy");
+        InputAction specialAction = m_PlayerInput.actions.FindAction("Special");
+
+        if (lightAction.IsPressed())
+        {
+            m_Animator.SetTrigger("LightPressed");
+            m_Animator.SetBool("JabToggle", !m_Animator.GetBool("JabToggle"));
+        }
+        else if (mediumAction.IsPressed())
+        {
+            m_Animator.SetTrigger("MediumPressed");
+        }
+        else if (heavyAction.IsPressed())
+        {
+            m_Animator.SetTrigger("HeavyPressed");
+        }
+        else if (specialAction.IsPressed())
+        {
+            m_Animator.SetTrigger("SpecialPressed");
+        }
     }
 }
