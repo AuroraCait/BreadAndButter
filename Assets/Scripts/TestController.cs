@@ -110,9 +110,7 @@ public class TestController : MonoBehaviour
             else if (specialAction.WasPressedThisFrame() && TryAnimTrigger("Tatsu"))
             {
                 m_lastAttackTime = now;
-                // PlayRandomizedWhiffEffect();
                 PlayRandomizedAttackEffect(hit);
-                PlayRandomizedComboEffect();
             }
         }
     }
@@ -200,7 +198,7 @@ public class TestController : MonoBehaviour
             {
                 // Bingo. Play a combo effect and advance that object's combo index.
                 PlayRandomizedComboEffect();
-                punchCastTarget.GetComponent<KitchenComboInteractable>().AdvanceCombo();
+                punchCastTarget.SendMessage("AdvanceCombo");
             }
         }
     }

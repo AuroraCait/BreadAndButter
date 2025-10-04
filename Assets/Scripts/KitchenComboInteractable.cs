@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class KitchenComboInteractable : MonoBehaviour
@@ -7,7 +8,7 @@ public class KitchenComboInteractable : MonoBehaviour
     public string CurrentComboName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void Start()
     {
         ComboIndex = 0;
         SetChildrenVisible(false);
@@ -47,12 +48,16 @@ public class KitchenComboInteractable : MonoBehaviour
         transform.GetChild(childIndex).gameObject.SetActive(visible);
     }
 
-    public void AdvanceCombo()
+    public virtual void AdvanceCombo()
     {
+        Debug.Log("Inside KitchenComboInteractable.AdvanceCombo");
         ComboIndex = (ComboIndex + 1) % transform.childCount;
         UpdateCurrentComboName();
         SetChildrenVisible(false);
         SetChildVisible(ComboIndex, true);
+
+        // Call any scripts that want to do something upon combo advance
+        SendMessage("OnComboAdvanced");
     }
 
     private void UpdateCurrentComboName()
