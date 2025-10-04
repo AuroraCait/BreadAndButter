@@ -52,14 +52,15 @@ public class TestController : MonoBehaviour
     void Update()
     {
         // InputAction upAction = m_PlayerInput.actions.FindAction("Up");
-        // InputAction downAction = m_PlayerInput.actions.FindAction("Down");
+        InputAction downAction = m_PlayerInput.actions.FindAction("Down");
         InputAction leftAction = m_PlayerInput.actions.FindAction("Left");
         InputAction rightAction = m_PlayerInput.actions.FindAction("Right");
 
         float velo = Speed * Time.deltaTime;
 
         gameObject.transform.position += new Vector3(
-            -velo * (leftAction.IsPressed() ? 1 : 0) + velo * (rightAction.IsPressed() ? 1 : 0),
+            -velo * (leftAction.IsPressed() && !downAction.IsPressed() ? 1 : 0) +
+            velo * (rightAction.IsPressed() && !downAction.IsPressed() ? 1 : 0),
             0f, 0f
         );
 
@@ -73,6 +74,7 @@ public class TestController : MonoBehaviour
         }
 
         m_Animator.SetBool("ForwardOrBack", leftAction.IsPressed() || rightAction.IsPressed());
+        m_Animator.SetBool("Crouching", downAction.IsPressed());
 
         InputAction lightAction = m_PlayerInput.actions.FindAction("Light");
         InputAction mediumAction = m_PlayerInput.actions.FindAction("Medium");
@@ -156,15 +158,15 @@ public class TestController : MonoBehaviour
     {
         var currentAnimationState = m_Animator.GetCurrentAnimatorStateInfo(0);
 
-        if (currentAnimationState.IsName("Idle") || currentAnimationState.IsName("Walk"))
+        if (currentAnimationState.IsName("Idle") || currentAnimationState.IsName("Walk") || currentAnimationState.IsName("Crouch"))
         {
-            Debug.Log("Animator in (Idle | Walk) state, sending animation trigger " + triggerName);
+            // Debug.Log("Animator in (Idle | Walk | Crouch) state, sending animation trigger " + triggerName);
             m_Animator.SetTrigger(triggerName);
             return true;
         }
         else
         {
-            Debug.Log("Animator not currently in (Idle | Walk)");
+            // Debug.Log("Animator not currently in (Idle | Walk | Crouch)");
             return false;
         }
     }

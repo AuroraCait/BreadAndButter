@@ -11,6 +11,11 @@ ScriptedImporter:
   - first:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
+      name: Crouch
+    second: {fileID: 7400000, guid: ebeb328610313f348b4547866cc2cde3, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
       name: FrontKick
     second: {fileID: 7400000, guid: 57ca23c21a3b8e345af007c0bd831f64, type: 2}
   - first:
@@ -142,7 +147,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638951754475755529
+  platformSettingsDirtyTick: 638951818984068878
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -176,7 +181,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 109
-      y: 142
+      y: 184
       width: 16
       height: 38
     spriteID: 16b72dc3c24b72749a093f8d198c72fc
@@ -187,7 +192,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 109, y: 142}
+    uvTransform: {x: 109, y: 184}
   - name: Walk_Frame_1
     originalName: 
     pivot: {x: 0.49999997, y: 0.6315789}
@@ -196,8 +201,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 109
-      y: 188
+      x: 140
+      y: 4
       width: 16
       height: 38
     spriteID: d930916d6565d8f4288e6f8678dd17b4
@@ -208,7 +213,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 109, y: 188}
+    uvTransform: {x: 140, y: 4}
   - name: Walk_Frame_2
     originalName: 
     pivot: {x: 0.46428567, y: 0.6315789}
@@ -238,8 +243,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 137
-      y: 4
+      x: 140
+      y: 50
       width: 16
       height: 38
     spriteID: b95925b8203976148b550d6162df868f
@@ -250,7 +255,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 137, y: 4}
+    uvTransform: {x: 140, y: 50}
   - name: Walk_Frame_4
     originalName: 
     pivot: {x: 0.50000006, y: 0.6315789}
@@ -260,7 +265,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 109
-      y: 4
+      y: 46
       width: 20
       height: 38
     spriteID: 2587d88ea6bc52b47afd442e1048c225
@@ -271,7 +276,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 109, y: 4}
+    uvTransform: {x: 109, y: 46}
   - name: Walk_Frame_5
     originalName: 
     pivot: {x: 0.5833334, y: 0.6666667}
@@ -470,7 +475,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 109
-      y: 50
+      y: 92
       width: 19
       height: 38
     spriteID: 3625dfbd7c6415d4abf4370816a8f9ee
@@ -481,7 +486,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 109, y: 50}
+    uvTransform: {x: 109, y: 92}
   - name: Walk_Frame_15
     originalName: 
     pivot: {x: 0.39130434, y: 0.6315789}
@@ -512,7 +517,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 109
-      y: 96
+      y: 138
       width: 19
       height: 38
     spriteID: 9459263c23036ae498d98c96380a33ff
@@ -523,7 +528,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 109, y: 96}
+    uvTransform: {x: 109, y: 138}
   - name: Walk_Frame_17
     originalName: 
     pivot: {x: 0.2916667, y: 0.5}
@@ -608,6 +613,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 77, y: 180}
+  - name: Walk_Frame_21
+    originalName: 
+    pivot: {x: 0.34782606, y: 0.7058824}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 109
+      y: 4
+      width: 23
+      height: 34
+    spriteID: 90780e79f136e1b4bb93a74d6b8db7ae
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 109, y: 4}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
@@ -812,6 +838,15 @@ ScriptedImporter:
         width: 24
         height: 36
       spriteId: 6a1e601570e816f45b5d3f964df873b1
+    - name: Walk_Frame_21
+      frameIndex: 21
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 23
+        height: 34
+      spriteId: 90780e79f136e1b4bb93a74d6b8db7ae
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
