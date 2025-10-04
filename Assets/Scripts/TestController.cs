@@ -4,6 +4,11 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(PlayerInput))]
 public class TestController : MonoBehaviour
 {
     public float Speed = 400f;
@@ -13,6 +18,7 @@ public class TestController : MonoBehaviour
 
     private Animator m_Animator;
     private AudioSource m_AudioSource;
+    private SpriteRenderer m_SpriteRenderer;
 
     private float m_lastAttackTime;     // s
     private const float ATTACK_COOLDOWN_TIME = 0.050f; // s
@@ -27,6 +33,7 @@ public class TestController : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_PlayerInput = GetComponent<PlayerInput>();
         m_AudioSource = GetComponent<AudioSource>();
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
 
         m_Animator.SetBool("ForwardOrBack", false);
         m_Animator.SetBool("JabToggle", false);
@@ -46,6 +53,15 @@ public class TestController : MonoBehaviour
             -velo * (leftAction.IsPressed() ? 1 : 0) + velo * (rightAction.IsPressed() ? 1 : 0),
             0f, 0f
         );
+
+        if (rightAction.WasPressedThisFrame())
+        {
+            m_SpriteRenderer.flipX = false;
+        }
+        else if (leftAction.WasPressedThisFrame())
+        {
+            m_SpriteRenderer.flipX = true;
+        }
 
         m_Animator.SetBool("ForwardOrBack", leftAction.IsPressed() || rightAction.IsPressed());
 
