@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - KitchenInteractable
+  - ComboIndicator
   layers:
   - Default
   - TransparentFX
@@ -12,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Background
-  - SemiBackground
+  - KitchenInteractableLayer
   - 
   - 
   - 
@@ -41,7 +43,7 @@ TagManager:
   - name: Background
     uniqueID: 1703555571
     locked: 0
-  - name: SemiBackground
+  - name: KitchenInteractableLayer
     uniqueID: 2977817763
     locked: 0
   - name: Default

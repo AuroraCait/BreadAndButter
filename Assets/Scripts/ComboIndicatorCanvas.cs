@@ -7,9 +7,8 @@ using static BNBInput;
 
 public class ComboIndicatorCanvas : MonoBehaviour
 {
-    [SerializeField] private String ComboName;
+    [SerializeField] public String ComboName;
     private BNBCombo Combo;
-    private int CurrentComboIndex;
     public GameObject InputIconPanel;
     public TMPro.TMP_Text TMPText;
 

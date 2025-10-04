@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4451767111632081109}
   m_Layer: 5
   m_Name: Combo Indicator (Canvas)
-  m_TagString: Untagged
+  m_TagString: ComboIndicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,10 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52aa20f93ad7e34428120726c0df65ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Combo:
-    Inputs: 
-    ComboName: 
-    TimingWindow: 0
+  ComboName: 
   InputIconPanel: {fileID: 1944054022343299478}
   TMPText: {fileID: 4850850099637884109}
 --- !u!1 &1944054022343299478

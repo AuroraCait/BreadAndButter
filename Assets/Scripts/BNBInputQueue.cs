@@ -124,26 +124,30 @@ public class BNBInputQueue : MonoBehaviour
 
     private void SearchForCombos()
     {
-        foreach (var combo in Combos)
+        foreach (var combo in AllCombos)
         {
             var queueSlice = GetRange(InputQueue, 0, Math.Min(combo.Inputs.Count, InputQueue.Count));
 
+            // Reversing the combo inputs since the input queue is in latest-first order
+            var reversedInputs = combo.Inputs.AsEnumerable().Reverse();
+
             // Debug.Log("Checking for combo " + combo.Name + "; input queue slice " + ListAsString(queueSlice) + ", combo inputs " + ListAsString(combo.Inputs));
 
-            if ((from input in queueSlice select input.InputType).SequenceEqual(combo.Inputs))
+            if ((from input in queueSlice select input.InputType).SequenceEqual(reversedInputs))
             {
                 var timeDelta = Math.Abs(queueSlice.Last().Timestamp - queueSlice.First().Timestamp);
 
                 // The inputs match, but are they within the timing window?
                 if (timeDelta <= combo.TimingWindow)
                 {
-                    Debug.Log("Combo Found - " + combo.ComboName);
+                    // Debug.Log("Combo Found - " + combo.ComboName);
                     InputQueue.Clear();
+                    gameObject.SendMessage("ComboPerformed", combo);
                     break;
                 }
                 else
                 {
-                    Debug.Log("Combo found, but missed timing window - " + combo.ComboName + "; input time " + timeDelta + "ms, window " + combo.TimingWindow);
+                    // Debug.Log("Combo found, but missed timing window - " + combo.ComboName + "; input time " + timeDelta + "ms, window " + combo.TimingWindow);
                 }
             }
         }
@@ -201,20 +205,6 @@ public class BNBInputQueue : MonoBehaviour
 
     public PlayerInput InputModule;
     private LinkedList<BNBInput> InputQueue;
-    private readonly BNBCombo[] Combos = {
-        new BNBCombo(
-            new List<BNBInputType> {BNBInputType.Down, BNBInputType.DownForward, BNBInputType.Forward, BNBInputType.Light},
-            "QuarterCircleForwardLight", 500
-        ),
-        new BNBCombo(
-            new List<BNBInputType> {BNBInputType.Down, BNBInputType.DownForward, BNBInputType.Forward, BNBInputType.Medium},
-            "QuarterCircleForwardMedium", 500
-        ),
-        new BNBCombo(
-            new List<BNBInputType> {BNBInputType.Down, BNBInputType.DownForward, BNBInputType.Forward, BNBInputType.Heavy},
-            "QuarterCircleForwardHeavy", 500
-        ),
-    };
     private (bool Up, bool Left, bool Right, bool Down) DPadState;
     private (bool Up, bool Left, bool Right, bool Down) LastDPadState;
 

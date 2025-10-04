@@ -4,12 +4,14 @@ using UnityEngine;
 public class KitchenComboInteractable : MonoBehaviour
 {
     public int ComboIndex;
+    public string CurrentComboName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // ComboIndex = 0;
+        ComboIndex = 0;
         SetChildrenVisible(false);
+        UpdateCurrentComboName();
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class KitchenComboInteractable : MonoBehaviour
     {
         Debug.Log("Trigger entered");
 
-        SetChildVisible(true, ComboIndex);
+        SetChildVisible(ComboIndex, true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -40,8 +42,21 @@ public class KitchenComboInteractable : MonoBehaviour
         }
     }
 
-    private void SetChildVisible(bool visible, int childIndex)
+    private void SetChildVisible(int childIndex, bool visible)
     {
         transform.GetChild(childIndex).gameObject.SetActive(visible);
+    }
+
+    public void AdvanceCombo()
+    {
+        ComboIndex = (ComboIndex + 1) % transform.childCount;
+        UpdateCurrentComboName();
+        SetChildrenVisible(false);
+        SetChildVisible(ComboIndex, true);
+    }
+
+    private void UpdateCurrentComboName()
+    {
+        CurrentComboName = transform.GetChild(ComboIndex).GetComponent<ComboIndicatorCanvas>().ComboName;
     }
 }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2214860366895737999}
   - component: {fileID: 4217627622927882800}
   - component: {fileID: 6568393920415407495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Kitchen Combo Interactable
-  m_TagString: Untagged
+  m_TagString: KitchenInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,6 +394,10 @@ PrefabInstance:
     - target: {fileID: 802048058723793778, guid: 80d440532229cc649852552034aefd56, type: 3}
       propertyPath: m_Name
       value: Combo Indicator (Canvas)
+      objectReference: {fileID: 0}
+    - target: {fileID: 802048058723793778, guid: 80d440532229cc649852552034aefd56, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4451767111632081109, guid: 80d440532229cc649852552034aefd56, type: 3}
       propertyPath: Combo.ComboName
