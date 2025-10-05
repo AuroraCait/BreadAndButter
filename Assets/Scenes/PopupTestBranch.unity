@@ -1487,7 +1487,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 59aa65ac95c0d62478bccb022e65c2cc, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1585,6 +1585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097e53303db4d7b4996410972528f3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WalkInKCI
+  m_DoorOpenClip: {fileID: 8300000, guid: 57db2dad3f37aa54fae3fd2dbe62f1f1, type: 3}
+  m_DoorCloseClip: {fileID: 8300000, guid: b89916247b3d8d44384d76f0394d93df, type: 3}
 --- !u!1001 &901701576
 PrefabInstance:
   m_ObjectHideFlags: 0
