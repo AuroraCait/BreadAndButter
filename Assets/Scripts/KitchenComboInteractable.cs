@@ -57,11 +57,14 @@ public class KitchenComboInteractable : MonoBehaviour
         SetChildVisible(ComboIndex, true);
 
         // Call any scripts that want to do something upon combo advance
-        SendMessage("OnComboAdvanced");
+        gameObject.SendMessage("OnComboAdvanced");
     }
 
     private void UpdateCurrentComboName()
     {
         CurrentComboName = transform.GetChild(ComboIndex).GetComponent<ComboIndicatorCanvas>().ComboName;
     }
+
+    // Prevents error when no script is attached to this GameObject that declares an OnComboAdvanced function
+    private void OnComboAdvanced() { /* no-op */}
 }
