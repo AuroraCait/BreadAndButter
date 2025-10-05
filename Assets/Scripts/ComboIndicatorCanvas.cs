@@ -26,6 +26,11 @@ public class ComboIndicatorCanvas : MonoBehaviour
 
         Combo = inputQueueComponent.GetComboByName(ComboName);
 
+        if (Combo is null)
+        {
+            Debug.Log("Unable to find combo with name " + ComboName);
+        }
+
         Debug.Log("Creating ComboIndicatorCanvas with " + Combo.Length() + " inputs");
 
         // TODO need to remove these when advancing combos
