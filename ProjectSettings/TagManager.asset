@@ -3,18 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-  - KitchenInteractable
-  - ComboIndicator
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Background
-  - KitchenInteractableLayer
+  - 
+  - 
   - 
   - 
   - 
@@ -40,17 +38,8 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 1703555571
-    locked: 0
-  - name: KitchenInteractableLayer
-    uniqueID: 2977817763
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UI
-    uniqueID: 4053974863
     locked: 0
   m_RenderingLayers:
   - Default

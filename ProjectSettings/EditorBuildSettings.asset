@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PopupTestBranch.unity
-    guid: ab1c0f414e9835f49910233762460d4f
+    path: Assets/Scenes/Main Menu.unity
+    guid: d79256e04abe9204282f23942d2d3229
+  - enabled: 1
+    path: Assets/Scenes/Dialogue.unity
+    guid: f9ca9fb371d5a4d498f2048c3d2d3d5f
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
